@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-pod
+  labels:
+    app: mysql
+spec:
+  containers:
+  - name: mysql
+    image: mysql:8.0
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "root"  # Contraseña para el usuario root
+    - name: MYSQL_DATABASE
+      value: "database"  # Base de datos inicial a crear
+    # Elimina las siguientes líneas:
+    - name: MYSQL_USER
+      value: "user"
+    - name: MYSQL_PASSWORD
+      value: "password"
+    ports:
+    - containerPort: 3306
+    volumeMounts:
+    - mountPath: /var/lib/mysql
+      name: mysql-storage
+  volumes:
+  - name: mysql-storage
+    emptyDir: {}  # Almacenamiento temporal

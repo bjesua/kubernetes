@@ -1,0 +1,12 @@
+# api-pv.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: api-pv
+spec:
+  capacity:
+    storage: 1Gi  # Capacidad del volumen
+  accessModes:
+    - ReadWriteOnce
+  hostPath:  # Almacenamiento local, ajusta esta ruta a la carpeta donde están tus archivos
+    path: /Users/tribal/Documents/Kubernetes/api
